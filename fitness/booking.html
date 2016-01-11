@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fitness - Booking System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  
+  <script>
+    $(document).ready(function() {
+      var seats = ["101101", "101102", "101103", "101104", "101105", "101106",
+                   "101107", "101108", "101109", "101110", "101111", "101112",
+                   "101113", "101114", "101115", "101116", "101117", "101118"];
+      var seatRow = 6;
+
+      if(typeof(Storage) !== "undefined") {
+          for (index = 0; index < seats.length; index++) {
+            var seat = seats[index];
+
+            var button = $("<button class='btn btn-default btn-circle'id='" + seat + "'>" + (index+1) + "</button>");
+
+            if (index % seatRow == 0) {
+              $(seatLayout).append("<p>");
+            }
+
+            // console.log(button);
+            $(seatLayout).append(button).append(" ");
+
+            if (localStorage.getItem(seat)) {
+              var id = "#" + seat;
+              $(id).prop('disabled', true);
+              $(id).addClass("disabledClass");
+            }
+          }
+      } else {
+        alert("Can't store data, storage not supported");
+      };
+
+      $(".btn-circle").click(function(){
+          //event.preventDefault();
+          $(this).prop('disabled', true);
+          $(this).addClass("disabledClass");
+
+          if(typeof(Storage) !== "undefined") {
+            id = $(this).attr('id')
+            console.log("You have booked seat " + $(this).text() + " " + id);
+            localStorage.setItem(id, "BOOKED");
+            $("#myModal").modal();
+          } else {
+              alert("Can't store data, storage not supported");
+          }
+      });
+    })
+
+  </script>
+
+  <style>
+    body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        color: #818181;
+    }
+
+    h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        color: #303030;
+        font-weight: 400;
+        margin-bottom: 30px;
+    }
+
+    .disabledClass {
+        background-color: #f6f6f6 !important;
+    }
+
+    .container-fluid {
+        padding: 60px 50px;
+    }
+
+    .btn-circle {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      line-height: 1.42;
+      border-radius: 15px;
+    }
+
+    .modal-header, h4, .close {
+          background-color: #5cb85c;
+          color:white !important;
+          text-align: center;
+          font-size: 30px;
+    }
+
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+
+    @media screen and (max-width: 768px) {
+        .col-sm-4 {
+            text-align: center;
+            margin: 25px 0;
+        }
+    }
+  </style>
+</head>
+
+<body id="myPage">
+<div class="container">
+  <div id="book" class="container-fluid text-center">
+    <h2>BOOK A CLASS</h2>
+    <h4>Choose a seat</h4>
+    <br>
+    <div class="row">
+      <div id="seatLayout" class="col-sm-12">
+<!--         <button class="btn btn-default btn-circle" id="101101">1</button>
+        <button class="btn btn-default btn-circle" id="101102">2</button>
+        <button class="btn btn-default btn-circle" id="101103">3</button>
+        <button class="btn btn-default btn-circle" id="101104">4</button>
+        <button class="btn btn-default btn-circle" id="101105">5</button>
+        <button class="btn btn-default btn-circle" id="101106">6</button>
+ -->      </div>
+    </div>
+    <br><br>
+    <div class="row">
+    </div>
+  </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <!--  data-dismiss="modal" for now but remove when correct functionality added -->
+              <button type="submit" class="btn btn-success btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
+
+</body>
+</html>
+
