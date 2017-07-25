@@ -1,0 +1,72 @@
+<html>
+<head>
+<script type="text/javascript">
+	function submitForm() {
+		calculatePersonalDay();
+	}
+
+	function calculatePersonalDay() {
+		var birthday = document.getElementById("birthday").value;
+		var birthmonth = document.getElementById("birthmonth").value;
+		var bnumber = (sepcal(birthday) + sepcal(birthmonth)) + 1;
+
+		var today = new Date();
+		var day = today.getDate();
+		var month = today.getMonth();
+		month++;
+
+		// console.log(birthday + " = " + sepcal(birthday));
+		// console.log(birthmonth + " = " + sepcal(birthmonth));
+		// console.log(day + " = " + sepcal(day)) + 1;
+		// console.log(month + " = " + sepcal(month));
+
+		// (1 + 9 + 3 + 1) + (2 + 5 + 7) = (14 + 14 = 28 = (2 + 8) = 10 = (1 + 0) = 1
+		var dnumber = sepcal(day) + sepcal(month);
+		var number = bnumber + dnumber;
+
+		var message = "Personal day number is ";
+		var messages = ["<p>Error.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+
+		while (number > 9) {
+			number = sepcal(number);
+		}
+
+		document.getElementById("personalDayNumber").innerHTML = message + sepcal(number) + messages[number];
+	}
+
+	function sepcal(i) {
+		var y = i % 10;
+		var z = i - y;
+
+		if (z > 9) {
+			z = z / 10;
+		}
+
+		return (z + y);
+	}
+</script>
+</head>
+<body>
+<div id="personalDay">
+	<form id="personalDayForm" action="javascript:submitForm();">
+		Birth Day:<br>
+		<input type="number" id="birthday" value="1" min="1" max="31"/>
+		<br>
+		Birth Month:<br>
+		<input type="number" id="birthmonth" value="1" min="1" max="12"/>
+		<br>
+		<input type="submit" value="Post"/>
+	</form>
+	<div id="personalDayNumber"></div>
+</div>
+</body>
+</html>
