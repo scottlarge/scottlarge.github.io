@@ -1,28 +1,55 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript">
 	function submitForm() {
 		calculatePersonalDay();
+		calculatePersonalWeek();
+		calculatePersonalMonth();
+		calculatePersonalYear();
+
+		// console.log("Week number is (7th should be 40) " + getWeekNumber(new Date("October 7, 2017 11:13:00")) + " [" + new Date("October 7, 2017 11:13:00") + "]");
+		// console.log("Week number is (8th should be 41) " + getWeekNumber(new Date("October 8, 2017 11:13:00")) + " [" + new Date("October 8, 2017 11:13:00") + "]");
+		// console.log("Week number is (9th should be 41) " + getWeekNumber(new Date("October 9, 2017 11:13:00")) + " [" + new Date("October 9, 2017 11:13:00") + "]");
+	}
+
+	function getPersonalYear() {
+		var today = new Date();
+		var birthday = document.getElementById("birthday").value;
+		var birthmonth = document.getElementById("birthmonth").value;
+
+		while (birthday > 9) {
+			birthday = sepcal(birthday);
+		}
+
+		while (birthmonth > 9) {
+			birthmonth = sepcal(birthmonth);
+		}
+
+		var year = today.getFullYear();
+
+		while (year > 9) {
+			year = sepcal(year);
+		}
+
+		var personalYear = sepcal(birthday) + sepcal(birthmonth) + year;
+		
+		while (personalYear > 9) {
+			personalYear = sepcal(personalYear);
+		}
+
+		return personalYear;		
 	}
 
 	function calculatePersonalDay() {
-		var birthday = document.getElementById("birthday").value;
-		var birthmonth = document.getElementById("birthmonth").value;
-		var bnumber = (sepcal(birthday) + sepcal(birthmonth)) + 1;
-
 		var today = new Date();
 		var day = today.getDate();
 		var month = today.getMonth();
 		month++;
 
-		// console.log(birthday + " = " + sepcal(birthday));
-		// console.log(birthmonth + " = " + sepcal(birthmonth));
-		// console.log(day + " = " + sepcal(day)) + 1;
-		// console.log(month + " = " + sepcal(month));
-
-		// (1 + 9 + 3 + 1) + (2 + 5 + 7) = (14 + 14 = 28 = (2 + 8) = 10 = (1 + 0) = 1
+		var personalYear = getPersonalYear();
 		var dnumber = sepcal(day) + sepcal(month);
-		var number = bnumber + dnumber;
+		var number = personalYear + dnumber;
 
 		var message = "Personal day number is ";
 		var messages = ["<p>Error.</p>",
@@ -43,6 +70,102 @@
 		document.getElementById("personalDayNumber").innerHTML = message + sepcal(number) + messages[number];
 	}
 
+	function calculatePersonalWeek() {
+		var today = new Date();
+		var day = today.getDate();
+		var month = today.getMonth();
+		month++;
+
+		var personalYear = getPersonalYear();
+		var weekNo = getWeekNumber(new Date());
+
+		while (weekNo > 9) {
+			weekNo = sepcal(weekNo);
+		}
+
+		var number = personalYear + weekNo;
+		
+		var message = "Personal week number is ";
+		var messages = ["<p>Error.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+
+		while (number > 9) {
+			number = sepcal(number);
+		}
+
+		document.getElementById("personalWeekNumber").innerHTML = message + sepcal(number) + messages[number];
+	}
+
+	function calculatePersonalMonth() {
+		var today = new Date();
+		var month = today.getMonth();
+		month++;
+
+		var personalYear = getPersonalYear();
+		var number = sepcal(month) + personalYear;
+
+		var message = "Personal month number is ";
+		var messages = ["<p>Error.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+
+		while (number > 9) {
+			number = sepcal(number);
+		}
+
+		document.getElementById("personalMonthNumber").innerHTML = message + sepcal(number) + messages[number];
+	}
+
+	function calculatePersonalYear() {
+		var message = "Personal year number is ";
+		var messages = ["<p>Error.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
+						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+
+		var number = getPersonalYear();
+		document.getElementById("personalYearNumber").innerHTML = message + number + messages[number];
+	}
+
+	function getWeekNumber(d) {
+	    // Copy date so don't modify original
+	    d = new Date(+d);
+	    d.setHours(0,0,0,0);
+	    // Set to nearest Thursday: current date + 4 - current day number
+	    // Make Sunday's day number 7
+	    d.setDate((d.getDate() + 4) - (d.getDay()||7));
+	    console.log("d = " + d);
+	    // Get first day of year
+	    var yearStart = new Date(d.getFullYear(),0,1);
+	    console.log("year start = " + yearStart);
+	    // Calculate full weeks to nearest Thursday
+	    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+	    // Return array of year and week number
+	    // return [d.getFullYear(), weekNo];
+	    return weekNo;
+	}	
+
 	function sepcal(i) {
 		var y = i % 10;
 		var z = i - y;
@@ -56,17 +179,22 @@
 </script>
 </head>
 <body>
-<div id="personalDay">
-	<form id="personalDayForm" action="javascript:submitForm();">
-		Birth Day:<br>
-		<input type="number" id="birthday" value="1" min="1" max="31"/>
-		<br>
-		Birth Month:<br>
-		<input type="number" id="birthmonth" value="1" min="1" max="12"/>
-		<br>
-		<input type="submit" value="Post"/>
-	</form>
-	<div id="personalDayNumber"></div>
+<div id="numberologuCalculator" class="container">
+	<div class="well" style="padding: 14px 19px;">
+		<form id="personalDayForm" action="javascript:submitForm();" class="form">
+			<div class="input" style="padding-top: 10px;">
+				<label for="">Birth Day / Month</label>
+				<input id="birthday" name="birthday" size="2" type="number" value="1" min="1" max="31"/>
+				<label for="">/</label>
+				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12"/>
+				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
+			</div>
+		</form>
+		<div id="personalDayNumber"></div>
+		<div id="personalWeekNumber"></div>
+		<div id="personalMonthNumber"></div>
+		<div id="personalYearNumber"></div>
+    </div>
 </div>
 </body>
 </html>
