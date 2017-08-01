@@ -15,7 +15,7 @@
 		calculatePersonalMonth();
 		calculatePersonalYear();
 
-		// console.log("Week number is (7th should be 40) " + getWeekNumber(new Date("October 7, 2017 11:13:00")) + " [" + new Date("October 7, 2017 11:13:00") + "]");
+		// console.log("Week number is (1st should be 40) " + getWeekNumber(new Date("October 1, 2017 11:13:00")) + " [" + new Date("October 7, 2017 11:13:00") + "]");
 		// console.log("Week number is (8th should be 41) " + getWeekNumber(new Date("October 8, 2017 11:13:00")) + " [" + new Date("October 8, 2017 11:13:00") + "]");
 		// console.log("Week number is (9th should be 41) " + getWeekNumber(new Date("October 9, 2017 11:13:00")) + " [" + new Date("October 9, 2017 11:13:00") + "]");
 	}
@@ -161,11 +161,11 @@
 	    d.setHours(0,0,0,0);
 	    // Set to nearest Thursday: current date + 4 - current day number
 	    // Make Sunday's day number 7
-	    d.setDate((d.getDate() + 4) - (d.getDay()||7));
-	    console.log("d = " + d);
+	    d.setDate((d.getDate() + 3) - (d.getDay()||1));
+	    //console.log("d = " + d);
 	    // Get first day of year
 	    var yearStart = new Date(d.getFullYear(),0,1);
-	    console.log("year start = " + yearStart);
+	    //console.log("year start = " + yearStart);
 	    // Calculate full weeks to nearest Thursday
 	    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
 	    // Return array of year and week number
