@@ -1,6 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
 	@media (min-device-width: 300px){
     	body {
@@ -9,6 +10,58 @@
 	}
 </style>
 <script type="text/javascript">
+	var personalDayMessages = [
+		"Error",
+		"Today is a good day to start something new. Ideas will come to you easily. Embrace new opportunities.",
+		"Today is a good day to develop an idea and also to work with others. Patience is key as this is a slow energy.",
+		"This is your day for good communication and authentic expression. Show people what you’re about.",
+		"This is a good day to focus and plan. Today’s energy will help you structure your work and ideas.",
+		"This is a great day to sell your product/service and to embrace any changes. Tweak ideas and go with the flow!",
+		"Today’s energy is good for being of service to those around you. Use your gifts to support others and feel the love.",
+		"Today is a time to figure out what you want in contemplation. Quiet time alone is good today to connect with yourself.",
+		"This is a day for success on the material plane. Manifest what you want and implement your ideas.",
+		"This is a day of reviewing what you’re working on. It’s also a great day for performance and public speaking."
+	];
+
+	var personalWeekMessages = [
+		"Error",
+		"This week is a time for new beginnings and sowing the seed of something new. Ideas will come to you so make sure you begin your idea this week.",
+		"This week is a time for developing your idea and slowly working on it. Be patient as this a slow energy. Co-operation with others is good this week.",
+		"This week is a good time to communicate who you are in your business and your life. Expression is good this week and telling people about your idea.",
+		"This is a week to focus and structure yourself and what you are working on. It may feel a little restrictive but the energy is helping you put things into form.",
+		"This is the week to embrace change and opportunity and is a good week to tweak your ideas now and be open to being flexible.",
+		"This is a busy week and you will feel needed so pace yourself. Supporting others is highlighted this week and being of service in your business/family life.",
+		"This week you will feel more inward so time alone to contemplate is key. Planning is good so use this time to plan for your success week next week.",
+		"This is your success week so use this week to implement ideas. You will see your ideas manifest. Organization is also good this week.",
+		"This week is a time to review what works and what doesn’t. Do not start anything new until next week. This week is good for performance and public speaking."
+	];
+
+	var personalMonthMessages = [
+		"Error",
+		"This month is a time to write ideas down that come to you. Use these ideas you are passionate about to put out into the world, even in a small way. Embrace new ideas, opportunities and people this month.",
+		"This is a time where you feel a slower energy but this is so you can develop what you're working on and working in co-operation with others. Be patient as you are nurturing the seed of your idea from last month.",
+		"This is where you need to show people what you are doing and express yourself and your business. This is a fun time to communicate what you stand for and have fun in the process.",
+		"This month is helping you structure and plan so you may feel that you are working hard or restricted in some way. This is because the energy is helping you put something into form.",
+		"This month is full of change and opportunity. Make sure you ground yourself as this erratic energy brings lots of different experiences. This is a good time to market and sell your business to others and a time to tweak what you are working on.",
+		"This is a busier time of service for you where family and/or service business are the focus. Make sure you pace yourself but at the same time embrace helping others.",
+		"You will feel a little more inward as the 7 energy wants to go within. This is so you can find out what you want and to plan. This month is more inward than outward, so spending time in nature and on your own to contemplate is good.",
+		"This is your success month so make sure you implement the ideas and plans you have been working on. You will be manifesting in the outer world this month. Organization is good too in the 8 monthly energy.",
+		"This month is a time to review what has worked for you and what hasn't. It can be an emotional time as you will be shown what needs to be let go of to make room for the new next month. Performance to an audience is good this month."
+	];
+
+	var personalYearMessages = [
+		"Error",
+		"This year you are sowing the seed of an idea that you are passionate about. It’s important that you put this out into the world, even in a small way. This will begin your nine-year cycle.",
+		"This year is about developing your idea that you sowed last year. You are slowly working on it, so patience is key. Relationships and compromise are highlighted this year.",
+		"This is the year to shine your light and show people who you are. It’s a fun year of friendships and authentic expression so tell people about you and your business.",
+		"This year is a foundation-laying year and you will feel like you are working hard. You are paving the way for opportunities coming to you next year. You will see rewards for your efforts.",
+		"This year is your year of new opportunities and change. This erratic energy brings lots of different experiences. Grounding is important. Embrace the new as it’s for your greatest good.",
+		"This year is a loving year and you will be needed. It’s your year of service so pacing yourself is advised. Family and/or service is the focus so it is a loving year.",
+		"This is your planning year and a time to slow down and connect to you. You will feel slower too but this is necessary for your inner growth so you can look within and work out what you really want.",
+		"This is your success year and a time to reap what you sowed from year 1. This is a time to implement ideas as they will tend to be successful. Enjoy the fruits of your labour. Make sure you grab opportunities with both hands.",
+		"This year is a time to review what is for your greatest good and make room for the new coming next year. It can be emotional as Life will bring up people, places and situations that need to be addressed."
+	];
+
 	function submitForm() {
 		calculatePersonalDay();
 		calculatePersonalWeek();
@@ -58,23 +111,13 @@
 		var dnumber = sepcal(day) + sepcal(month);
 		var number = personalYear + dnumber;
 
-		var message = "Personal day number is ";
-		var messages = ["<p>Error.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+		var message = "<b>Personal day number is ";
 
 		while (number > 9) {
 			number = sepcal(number);
 		}
 
-		document.getElementById("personalDayNumber").innerHTML = message + sepcal(number) + messages[number];
+		document.getElementById("personalDayNumber").innerHTML = message + sepcal(number) + "</b><p>" + personalDayMessages[number] + "</p><br/>";
 	}
 
 	function calculatePersonalWeek() {
@@ -92,23 +135,13 @@
 
 		var number = personalYear + weekNo;
 		
-		var message = "Personal week number is ";
-		var messages = ["<p>Error.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+		var message = "<b>Personal week number is ";
 
 		while (number > 9) {
 			number = sepcal(number);
 		}
 
-		document.getElementById("personalWeekNumber").innerHTML = message + sepcal(number) + messages[number];
+		document.getElementById("personalWeekNumber").innerHTML = message + sepcal(number) + "</b><p>" + personalWeekMessages[number] + "</p><br/>";
 	}
 
 	function calculatePersonalMonth() {
@@ -119,57 +152,34 @@
 		var personalYear = getPersonalYear();
 		var number = sepcal(month) + personalYear;
 
-		var message = "Personal month number is ";
-		var messages = ["<p>Error.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+		var message = "<b>Personal month number is ";
 
 		while (number > 9) {
 			number = sepcal(number);
 		}
 
-		document.getElementById("personalMonthNumber").innerHTML = message + sepcal(number) + messages[number];
+		document.getElementById("personalMonthNumber").innerHTML = message + sepcal(number) + "</b><p>" + personalMonthMessages[number] + "</p><br/>";
 	}
 
 	function calculatePersonalYear() {
-		var message = "Personal year number is ";
-		var messages = ["<p>Error.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>",
-						"<p>Today is a good day for starting something new. Ideas will come to you easily.</p>"];
+		var message = "<b>Personal year number is ";
 
 		var number = getPersonalYear();
-		document.getElementById("personalYearNumber").innerHTML = message + number + messages[number];
+		document.getElementById("personalYearNumber").innerHTML = message + number + "</b><p>" + personalYearMessages[number] + "</p><br/>";
 	}
 
 	function getWeekNumber(d) {
 	    // Copy date so don't modify original
 	    d = new Date(+d);
 	    d.setHours(0,0,0,0);
-	    // Set to nearest Thursday: current date + 4 - current day number
+	    // Set to nearest Wednesday: current date + 4 - current day number
 	    // Make Sunday's day number 7
 	    d.setDate((d.getDate() + 3) - (d.getDay()||1));
-	    //console.log("d = " + d);
 	    // Get first day of year
 	    var yearStart = new Date(d.getFullYear(),0,1);
-	    //console.log("year start = " + yearStart);
-	    // Calculate full weeks to nearest Thursday
+	    // Calculate full weeks to nearest Wednesday
 	    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
 	    // Return array of year and week number
-	    // return [d.getFullYear(), weekNo];
 	    return weekNo;
 	}	
 
@@ -183,6 +193,31 @@
 
 		return (z + y);
 	}
+
+	$(document).ready(function() {
+	    $(birthmonth).on("change input", function() {
+			var birthday = $('#birthday').val();
+			var birthmonth = $('#birthmonth').val();
+			
+			if (birthmonth == 1 || birthmonth == 3 || birthmonth == 5 || birthmonth == 7 || birthmonth == 8  || birthmonth == 10 || birthmonth == 12) {
+			    $('#birthday').attr({
+			       "max" : 31,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 2) {
+			    $('#birthday').attr({
+			       "max" : 29,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 4 || birthmonth == 5 || birthmonth == 9 || birthmonth == 11) {
+			    $('#birthday').attr({
+			       "max" : 30,
+			       "min" : 1
+			    });
+			}
+	    });
+	});
+
 </script>
 </head>
 <body>
