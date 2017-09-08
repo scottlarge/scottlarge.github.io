@@ -9,22 +9,6 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script type="text/javascript">
-    function load()
-    {
-    $( "#dialog-message" ).dialog({
-      modal: true,
-      buttons: {
-        Ok: function() {
-          window.location.href = "/track/view/" + clickTracker.getKey() + ""; 
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-    }
-    </script>
-
 </head>
 
 <body onload="load()">
@@ -32,23 +16,10 @@
 <div id="dialog-message" title="Mobile voicemail activation">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    Please click the Dial key when prompted to let your phone dial " + url.replace("tel:", "") + "
+    Please click the Dial key when prompted to let your phone dial <a href="tel:**004*0500500#">**004*0500500#</a>
   </p>
 </div>
 
-<noscript>
-<br>
-<br>
-<br>
-<p style="font-size: 10pt; color: blue">
-If your browser does not support javascript, please follow this link, then click the dial key as prompted to allow your phone to dial '**004*0500500#' 
-<a href="" + url + "">Activate voicemail</a>
-</p>
-<br>
-<br>
-<br>
-</noscript>
-
 </body>
 
-</html>\n"
+</html>
