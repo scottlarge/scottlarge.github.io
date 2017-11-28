@@ -1,0 +1,64 @@
+<script>
+  jQuery('.mc4wp-form').on('submit', function(evt) {
+    //evt.preventDefault();
+    console.log("Form with ID 2998 successfully submitted."); 
+    
+    var dataArray = jQuery(this).serializeArray();
+    var dataObj = {};
+
+    jQuery(dataArray).each(function(i, field){
+      dataObj[field.name] = field.value;
+    });
+    
+    var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             //console.log(xhttp.responseText);
+             console.log("Form posted");
+          }
+      };
+	
+      console.log('https://carltonpackaging.com/wp-content/gv/gv.php?firstName=' + encodeURI(dataObj['FNAME']) + '&lastName=' + encodeURI(dataObj['LNAME']) + '&email=' + encodeURI(dataObj['EMAIL']) + '&company=' + encodeURI(dataObj['company']));
+      xhttp.open("GET", 'https://carltonpackaging.com/wp-content/gv/gv.php?firstName=' + encodeURI(dataObj['FNAME']) + '&lastName=' + encodeURI(dataObj['LNAME']) + '&email=' + encodeURI(dataObj['EMAIL']) + '&company=' + encodeURI(dataObj['company']), true);
+      xhttp.send();
+  });
+</script>
+
+<p style="margin-left:10px;margin-right:10px;">
+    <label>First Name</label>
+    <input style="width:100%;" type="text" name="FNAME" placeholder="First Name" required />
+</p>
+               
+<p style="margin-left:10px;margin-right:10px;">
+    <label>Last Name</label>
+    <input style="width:100%;" type="text" name="LNAME" placeholder="Last Name">
+</p>
+
+<p style="margin-left:10px;margin-right:10px;">
+	<label>Email address: </label>
+	<input style="width:100%;" type="email" name="EMAIL" placeholder="Your email address" required />
+</p>
+<p style="margin-left:10px;margin-right:10px;">
+	<label>Company: </label>
+	<input style="width:100%;" type="text" name="company" placeholder="Company" required />
+</p>
+
+<center>
+<label>
+    <input name="_mc4wp_lists[]" type="checkbox" value="04c587726a"> <span>Company & Product Info</span>
+</label>
+<label>
+    <input name="_mc4wp_lists[]" type="checkbox" value="a9b0e766ec"> <span>Special Offers</span>
+</label>
+<label>
+    <input name="_mc4wp_lists[]" type="checkbox" value="ca31d1fff5"> <span>Newsletter & Blogs</span>
+</label>
+  <label>
+  <input name="_mc4wp_lists[]" type="checkbox" value="3289d12dd7"> <span>General Marketing</span>
+  </label>
+</center>
+<br>
+<p style="margin-left:10px;margin-right:10px;">
+    <input style="width:100%;" type="submit" value="Subscribe">
+</p>
+
