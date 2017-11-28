@@ -1,0 +1,150 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+	@media (min-device-width: 300px){
+    	body {
+    		font-size: 5vw;
+    	}
+	}
+</style>
+<script type="text/javascript">
+	var personalWeekMessages = [
+		"Error",
+		"This week is a time for new beginnings and sowing the seed of something new. Ideas will come to you so make sure you begin your idea this week.",
+		"This week is a time for developing your idea and slowly working on it. Be patient as this is a slow energy. Co-operation with others is good this week.",
+		"This week is a good time to communicate who you are in your business and your life. Expression is good this week and telling people about your idea.",
+		"This is a week to focus and structure yourself and what you are working on. It may feel a little restrictive but the energy is helping you put things into form.",
+		"This is the week to embrace change and opportunity and is a good week to tweak your ideas now and be open to being flexible.",
+		"This is a busy week and you will feel needed so pace yourself. Supporting others is highlighted this week and being of service in your business/family life.",
+		"This week you will feel more inward so time alone to contemplate is key. Planning is good so use this time to plan for your success week next week.",
+		"This is your success week so use this week to implement ideas. You will see your ideas manifest. Organization is also good this week.",
+		"This week is a time to review what works and what doesn&apos;t. Do not start anything new until next week. This week is good for performance and public speaking."
+	];
+
+	function submitForm() {
+		calculatePersonalWeek();
+	}
+
+	function calculatePersonalWeek() {
+		var today = new Date();
+		var day = today.getDate();
+		var month = today.getMonth();
+		month++;
+
+		var personalYear = getPersonalYear();
+		var weekNo = getWeekNumber(new Date());
+
+		while (weekNo > 9) {
+			weekNo = sepcal(weekNo);
+		}
+
+		var number = personalYear + weekNo;
+		
+		var message = "<b>Personal week number is ";
+
+		while (number > 9) {
+			number = sepcal(number);
+		}
+
+		document.getElementById("personalWeekNumber").innerHTML = message + sepcal(number) + "</b><p>" + personalWeekMessages[number] + "</p><br/>";
+	}
+
+	function getPersonalYear() {
+		var today = new Date();
+		var birthday = document.getElementById("birthday").value;
+		var birthmonth = document.getElementById("birthmonth").value;
+
+		while (birthday > 9) {
+			birthday = sepcal(birthday);
+		}
+
+		while (birthmonth > 9) {
+			birthmonth = sepcal(birthmonth);
+		}
+
+		var year = today.getFullYear();
+
+		while (year > 9) {
+			year = sepcal(year);
+		}
+
+		var personalYear = sepcal(birthday) + sepcal(birthmonth) + year;
+		
+		while (personalYear > 9) {
+			personalYear = sepcal(personalYear);
+		}
+
+		return personalYear;		
+	}
+
+	function getWeekNumber(d) {
+	    // Copy date so don't modify original
+	    d = new Date(+d);
+	    d.setHours(0,0,0,0);
+	    // Set to nearest Wednesday: current date + 4 - current day number
+	    // Make Sunday's day number 7
+	    d.setDate((d.getDate() + 3) - (d.getDay()||1));
+	    // Get first day of year
+	    var yearStart = new Date(d.getFullYear(),0,1);
+	    // Calculate full weeks to nearest Wednesday
+	    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+	    // Return array of year and week number
+	    return weekNo;
+	}	
+
+	function sepcal(i) {
+		var y = i % 10;
+		var z = i - y;
+
+		if (z > 9) {
+			z = z / 10;
+		}
+
+		return (z + y);
+	}
+
+	$(document).ready(function() {
+	    $(birthmonth).on("change input", function() {
+			var birthday = $('#birthday').val();
+			var birthmonth = $('#birthmonth').val();
+			
+			if (birthmonth == 1 || birthmonth == 3 || birthmonth == 5 || birthmonth == 7 || birthmonth == 8  || birthmonth == 10 || birthmonth == 12) {
+			    $('#birthday').attr({
+			       "max" : 31,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 2) {
+			    $('#birthday').attr({
+			       "max" : 29,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 4 || birthmonth == 5 || birthmonth == 9 || birthmonth == 11) {
+			    $('#birthday').attr({
+			       "max" : 30,
+			       "min" : 1
+			    });
+			}
+	    });
+	});
+
+</script>
+</head>
+<body>
+<div id="numberologuCalculator" class="container-fluid">
+	<div class="well" style="padding: 14px 19px;">
+		<form id="personalDayForm" action="javascript:submitForm();" class="form">
+			<div class="input" style="padding-top: 10px;">
+				<label for="">Birth Day / Month</label>
+				<input id="birthday" name="birthday" size="2" type="number" value="1" min="1" max="31"/>
+				<label for="">/</label>
+				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12"/>
+				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
+			</div>
+		</form>
+		<div id="personalWeekNumber"></div>
+    </div>
+</div>
+</body>
+</html>
