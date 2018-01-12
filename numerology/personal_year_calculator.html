@@ -1,0 +1,119 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+	@media (min-device-width: 300px){
+    	body {
+    		font-size: 5vw;
+    	}
+	}
+</style>
+<script type="text/javascript">
+	var personalYearMessages = [
+		"Error",
+		"This year you are sowing the seed of an idea that you are passionate about. It&apos;s important that you put this out into the world, even in a small way. This will begin your nine-year cycle.",
+		"This year is about developing your idea that you sowed last year. You are slowly working on it, so patience is key. Relationships and compromise are highlighted this year.",
+		"This is the year to shine your light and show people who you are. It&apos;s a fun year of friendships and authentic expression so tell people about you and your business.",
+		"This year is a foundation-laying year and you will feel like you are working hard. You are paving the way for opportunities coming to you next year. You will see rewards for your efforts.",
+		"This year is your year of new opportunities and change. This erratic energy brings lots of different experiences. Grounding is important. Embrace the new as it&apos;s for your greatest good.",
+		"This year is a loving year and you will be needed. It&apos;s your year of service so pacing yourself is advised. Family and/or service is the focus so it is a loving year.",
+		"This is your planning year and a time to slow down and connect to you. You will feel slower too but this is necessary for your inner growth so you can look within and work out what you really want.",
+		"This is your success year and a time to reap what you sowed from year 1. This is a time to implement ideas as they will tend to be successful. Enjoy the fruits of your labour. Make sure you grab opportunities with both hands.",
+		"This year is a time to review what is for your greatest good and make room for the new coming next year. It can be emotional as Life will bring up people, places and situations that need to be addressed."
+	];
+
+	function submitForm() {
+		calculatePersonalYear();
+	}
+
+	function getPersonalYear() {
+		var today = new Date();
+		var birthday = document.getElementById("birthday").value;
+		var birthmonth = document.getElementById("birthmonth").value;
+
+		while (birthday > 9) {
+			birthday = sepcal(birthday);
+		}
+
+		while (birthmonth > 9) {
+			birthmonth = sepcal(birthmonth);
+		}
+
+		var year = today.getFullYear();
+
+		while (year > 9) {
+			year = sepcal(year);
+		}
+
+		var personalYear = sepcal(birthday) + sepcal(birthmonth) + year;
+		
+		while (personalYear > 9) {
+			personalYear = sepcal(personalYear);
+		}
+
+		return personalYear;		
+	}
+
+
+	function calculatePersonalYear() {
+		var message = "<b>Personal year number is ";
+
+		var number = getPersonalYear();
+		document.getElementById("personalYearNumber").innerHTML = message + number + "</b><br/>";
+	}
+
+	function sepcal(i) {
+		var y = i % 10;
+		var z = i - y;
+
+		if (z > 9) {
+			z = z / 10;
+		}
+
+		return (z + y);
+	}
+
+	$(document).ready(function() {
+	    $(birthmonth).on("change input", function() {
+			var birthday = $('#birthday').val();
+			var birthmonth = $('#birthmonth').val();
+			
+			if (birthmonth == 1 || birthmonth == 3 || birthmonth == 5 || birthmonth == 7 || birthmonth == 8  || birthmonth == 10 || birthmonth == 12) {
+			    $('#birthday').attr({
+			       "max" : 31,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 2) {
+			    $('#birthday').attr({
+			       "max" : 29,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 4 || birthmonth == 5 || birthmonth == 9 || birthmonth == 11) {
+			    $('#birthday').attr({
+			       "max" : 30,
+			       "min" : 1
+			    });
+			}
+	    });
+	});
+
+</script>
+</head>
+<body>
+<div id="numberologuCalculator" class="container-fluid">
+	<div class="well" style="padding: 14px 19px;">
+		<form id="personalDayForm" action="javascript:submitForm();" class="form">
+			<div class="input" style="padding-top: 10px;">
+				<label for="">Birth Day / Month</label>
+				<input id="birthday" name="birthday" size="2" type="number" value="1" min="1" max="31"/>
+				<label for="">/</label>
+				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12"/>
+				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
+			</div>
+		</form>
+		<div id="personalYearNumber"></div>
+    </div>
+</div>
+</body>
+</html>
