@@ -7,6 +7,11 @@
 		font-size: 5vw;
 	}
 
+	p {
+		font-size: 2vw;
+		text-align: center;
+	}
+
 	h4 {
 			margin-top: -100px;
 			padding-left: 15px;
@@ -88,57 +93,56 @@
 			], 
 			// 2
 			[
-				["Rose_Quartz_and_moonstone_2", "http://dummylink"]
+				["Rose_Quartz_and_moonstone_2", "http://dummylink", "Rose Quartz and Moonstone"]
 			], 
 			// 3
 			[
-				["Tigers_eye_obsidian_and_clear_quartz_3", "http://dummylink"]
+				["Tigers_eye_obsidian_and_clear_quartz_3", "http://dummylink", "Tigers Eye Obsidian and Clear Quartz"]
 			], 
 			// 4
 			[
-				["Green_adventurine_and_clear_quartz__4", "http://dummylink"],
-				["Rainbow_flourite_and_clear_quartz_4", "http://dummylink"]
+				["Green_adventurine_and_clear_quartz__4", "http://dummylink", "Green Adventurine and Clear Quartz"],
+				["Rainbow_flourite_and_clear_quartz_4", "http://dummylink", "Rainbow Flourite and Clear Quartz"]
 			], 
 			// 5
 			[
-				["Citrine_hematite_and_tigers_eye_5", "http://dummylink"],
-				["Tigers_eye_and_hematite_5", "http://dummylink"]
+				["Citrine_hematite_and_tigers_eye_5", "http://dummylink", "Citrine Hematite and Tigers Eye"],
+				["Tigers_eye_and_hematite_5", "http://dummylink", "Tigers Eye and Hematite"]
 			], 
 			// 6
 			[
-				["Rose_quartz_and_chariote_6", "http://dummylink"],
-				["Rose_quartz_and_hematite_6", "http://dummylink"]
+				["Rose_quartz_and_chariote_6", "http://dummylink", "Rose Quartz and Chariote"],
+				["Rose_quartz_and_hematite_6", "http://dummylink", "Rose Quartz and Hematite"]
 			], 
 			// 7
 			[
-				["Rhodonite_and_rose_quartz_7", "http://dummylink"],
-				["Turquoise_and_clear_quartz_7", "http://dummylink"]
+				["Rhodonite_and_rose_quartz_7", "http://dummylink", "Rhodonite and Rose Quartz"],
+				["Turquoise_and_clear_quartz_7", "http://dummylink", "Turquoise and Clear Quartz"]
 			], 
 			// 8
 			[
-				["Green_jade_and_prehnite_8", "http://dummylink"]
+				["Green_jade_and_prehnite_8", "http://dummylink", "Green Jade and Prehnite"]
 			], 
 			// 9
 			[
-				["Moonstone_and_agate_9", "http://dummylink"],
-				["Smokey_quartz_onyx_and_clear_quartz_9", "http://dummylink"]
+				["Moonstone_and_agate_9", "http://dummylink", "Moonstone and agate_9"],
+				["Smokey_quartz_onyx_and_clear_quartz_9", "http://dummylink", "Smokey Quartz Onyx and Clear Quartz"]
 			], 
 			// 10
 			[
-				["Hematite_and_clear_quartz_11", "http://dummylink"],
-				["Moonstone_and_hematite_11", "http://dummylink"]
+				["Hematite_and_clear_quartz_11", "http://dummylink", "Hematite and clear Quartz"],
+				["Moonstone_and_hematite_11", "http://dummylink", "Moonstone and Hematite"]
 			], 
 			// 11
 			[
-				["Green_adventurine_and_clear_quartz_22", "http://dummylink"]
+				["Green_adventurine_and_clear_quartz_22", "http://dummylink", "Green Adventurine and Clear Quartz"]
 			], 
 			// 12
 			[
-				["Rose_quartz_and_chariote_33", "http://dummylink"]
+				["Rose_quartz_and_chariote_33", "http://dummylink", "Rose Quartz and Chariote"]
 			]
 		];
 
-		console.log(images[num]);
 		return images[num];
 	}
 
@@ -167,12 +171,16 @@
 		document.getElementById("lifePathResult").innerHTML = message + "<br/>";
 
 		var imagesHtml = "<h4>Click on the image to shop for the item</h4>";
+		var imagesNames = "";
 
 		for (var i = 0; i < images.length; i++) {
-			imagesHtml += "<a href='" + images[i][1] + "' target='_new'><img class='col-md-4' width='50%' src='images/" + images[i][0] + ".jpg'/></a>"
+			imagesHtml += "<a href='" + images[i][1] + "' target='_new'><img class='col-md-4' width='50%' src='images/" + images[i][0] + ".jpg'/></a>";
+			imagesNames += "<p class='col-md-4'>" + images[i][2] + "</p>";
 		}
 		
 		document.getElementById("lifePathImages").innerHTML = imagesHtml;
+		document.getElementById("lifePathNames").innerHTML = imagesNames;
+		
 	}
 
 	function sepcal(i) {
@@ -222,12 +230,13 @@
 				<label for="">/</label>
 				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12" style="width: 110px;"/>
 				<label for="">/</label>
-				<input id="birthyear" name="birthmonth" size="4" type="number" value="1900" min="1" max="2018" style="width: 190px;"/>
+				<input id="birthyear" name="birthmonth" size="4" type="number" value="1970" min="1" max="2018" style="width: 190px;"/>
 				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
 			</div>
 		</form>
 		<div id="lifePathResult"></div>
 		<div id="lifePathImages" class="row"></div>
+		<div id="lifePathNames" class="row"></div>
     </div>
 </div>
 </body>
