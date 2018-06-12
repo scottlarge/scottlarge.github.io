@@ -1,0 +1,236 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+	body {
+		font-size: 5vw;
+	}
+
+	h4 {
+			margin-top: -100px;
+			padding-left: 15px;
+ 	}
+
+	@media screen and (max-width: 992px){
+    	h4 {
+ 			margin-top: -100px;
+ 			padding-left: 15px;
+     	}
+	}
+
+	@media screen and (max-width: 800px){
+    	h4 {
+ 			margin-top: -20px;
+ 			padding-left: 15px;
+     	}
+	}
+</style>
+<script type="text/javascript">
+	var lifePathMessages = [
+		"Error",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO BELIEVE IN YOURSELF AND BE BOLD IN YOUR IDEAS.</h2><h3>The gemstone beads and the number 1 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO WORK WELL IN RELATIONSHIPS WITH OTHERS AND TO BE PATIENT IN DEVELOPING YOUR IDEAS.</h2><h3>The gemstone beads and the number 2 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO EXPRESS YOURSELF AUTHENTICALLY, COMMUNICATE YOU, AND BE CREATIVE.</h2><h3>The gemstone beads and the number 3 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO CREATE A HEALTHY WORK/LIFE BALANCE, TO FOCUS AND TO BE MORE OPEN TO NEW OPPORTUNITIES.</h2><h3>The gemstone beads and the number 4 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO GROUND AND FOCUS YOUR ENERGIES TO BRING YOU CONSTRUCTIVE FREEDOM.</h2><h3>The gemstone beads and the number 5 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO CREATE BOUNDARIES WHILE SUPPORTING OTHERS AND TO HELP YOU SELF-CARE.</h2><h3>The gemstone beads and the number 6 charm is helping you to balance and attract the energies to assist you towards your Life Path</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO BALANCE YOUR HEART AND HEAD ENERGIES AND TO HELP CALM YOUR MENTAL ENERGY.</h2><h3>The gemstone beads and the number 7 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO BE COMFORTABLE WITH ABUNDANCE AND ORGANIZATION IN THE MATERIAL WORLD.</h2><h3>The gemstone beads and the number 8 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO CREATE BOUNDARIES, TO LET GO AND RELEASE THE PAST AND ANYTHING IN YOUR LIFE THAT DOES NOT SERVE YOU.</h2><h3>The gemstone beads and the number 9 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN INNER STRENGTH, SELF-BELIEF AND THE ABILITY TO INSPIRE OTHERS.</h2><h3>The gemstone beads and the number 11 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN HOW TO CREATE A HEALTHY WORK/LIFE BALANCE AND TO ASSIST YOU IN BUILDING YOUR VISION.</h2><h3>The gemstone beads and the number 22 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>",
+		"<h2>YOU ARE HERE IN THIS LIFETIME TO LEARN TO COMMUNICATE YOUR NEEDS AND ASSIST OTHERS WHILE CREATING HEALTHY BOUNDARIES.</h2><h3>The gemstone beads and the number 33 charm is helping you to balance and attract the energies to assist you towards your Life Path.</h3>"
+	];
+
+	function submitForm() {
+		calculateLifePathNumber();
+	}
+
+	function getLifePathNumber() {
+		var birthday = document.getElementById("birthday").value;
+		var birthmonth = document.getElementById("birthmonth").value;
+		var birthyear = document.getElementById("birthyear").value;
+		var str = (birthday + birthmonth + birthyear).split("");
+		
+		var result = 0;
+		var loop = 0
+
+		while (loop < 5 && (result == 0 || (result > 10 && result != 11 && result != 22 && result != 33))) {
+			result = 0;
+
+			for (var i = 0; i < str.length; i++) {
+				result += parseInt(str[i]);
+			}
+
+			console.log(str);
+			console.log(result);
+
+			str = result.toString().split("");
+			loop++;
+		}
+
+		if (loop == 4) {
+			return "Error occurred";
+		}
+
+		return result;		
+	}
+
+	function getImages(num) {
+		var images = 
+		[	
+			// 0
+			[], 
+			[
+				["", "http://dummylink"],
+			],
+			// 1
+			[
+				["", "http://dummylink"],
+			], 
+			// 2
+			[
+				["Rose_Quartz_and_moonstone_2", "http://dummylink"]
+			], 
+			// 3
+			[
+				["Tigers_eye_obsidian_and_clear_quartz_3", "http://dummylink"]
+			], 
+			// 4
+			[
+				["Green_adventurine_and_clear_quartz__4", "http://dummylink"],
+				["Rainbow_flourite_and_clear_quartz_4", "http://dummylink"]
+			], 
+			// 5
+			[
+				["Citrine_hematite_and_tigers_eye_5", "http://dummylink"],
+				["Tigers_eye_and_hematite_5", "http://dummylink"]
+			], 
+			// 6
+			[
+				["Rose_quartz_and_chariote_6", "http://dummylink"],
+				["Rose_quartz_and_hematite_6", "http://dummylink"]
+			], 
+			// 7
+			[
+				["Rhodonite_and_rose_quartz_7", "http://dummylink"],
+				["Turquoise_and_clear_quartz_7", "http://dummylink"]
+			], 
+			// 8
+			[
+				["Green_jade_and_prehnite_8", "http://dummylink"]
+			], 
+			// 9
+			[
+				["Moonstone_and_agate_9", "http://dummylink"],
+				["Smokey_quartz_onyx_and_clear_quartz_9", "http://dummylink"]
+			], 
+			// 10
+			[
+				["Hematite_and_clear_quartz_11", "http://dummylink"],
+				["Moonstone_and_hematite_11", "http://dummylink"]
+			], 
+			// 11
+			[
+				["Green_adventurine_and_clear_quartz_22", "http://dummylink"]
+			], 
+			// 12
+			[
+				["Rose_quartz_and_chariote_33", "http://dummylink"]
+			]
+		];
+
+		console.log(images[num]);
+		return images[num];
+	}
+
+	function calculateLifePathNumber() {
+		// var message = "<b>LIFE PATH CRYSTAL BRACELET ";
+		var message = "";
+		var images = [];
+
+		var number = getLifePathNumber();
+
+		if (number == 11) {
+			message += lifePathMessages[10];
+			images = getImages(10);
+		} else if (number == 22) {
+			message += lifePathMessages[11];
+			images = getImages(11);
+		} else if (number == 33) {
+			message += lifePathMessages[12];
+			images = getImages(12);
+		} else {
+			message += lifePathMessages[number];	
+			images = getImages(number);
+		}
+
+		document.getElementById("lifePathResult").innerHTML = message + "<br/>";
+
+		var imagesHtml = "<h4>Click on the image to shop for the item</h4>";
+
+		for (var i = 0; i < images.length; i++) {
+			imagesHtml += "<a href='" + images[i][1] + "' target='_new'><img class='col-md-4' width='50%' src='images/" + images[i][0] + ".jpg'/></a>"
+		}
+		
+		document.getElementById("lifePathImages").innerHTML = imagesHtml;
+	}
+
+	function sepcal(i) {
+		var y = i % 10;
+		var z = i - y;
+
+		if (z > 9) {
+			z = z / 10;
+		}
+
+		return (z + y);
+	}
+
+	$(document).ready(function() {
+	    $(birthmonth).on("change input", function() {
+			var birthday = $('#birthday').val();
+			var birthmonth = $('#birthmonth').val();
+			
+			if (birthmonth == 1 || birthmonth == 3 || birthmonth == 5 || birthmonth == 7 || birthmonth == 8  || birthmonth == 10 || birthmonth == 12) {
+			    $('#birthday').attr({
+			       "max" : 31,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 2) {
+			    $('#birthday').attr({
+			       "max" : 29,
+			       "min" : 1
+			    });
+			} else if (birthmonth == 4 || birthmonth == 5 || birthmonth == 9 || birthmonth == 11) {
+			    $('#birthday').attr({
+			       "max" : 30,
+			       "min" : 1
+			    });
+			}
+	    });
+	});
+
+</script>
+</head>
+<body>
+<div id="numerologyCalculator" class="container-fluid">
+	<div class="well" style="padding: 14px 19px;">
+		<form id="lifePathForm" action="javascript:submitForm();" class="form">
+			<div class="input" style="padding-top: 10px;">
+				<label for="" style="font-size: 50px;">Birth Day / Month / Year</label>
+				<input id="birthday" name="birthday" size="2" type="number" value="1" min="1" max="31" style="width: 110px;"/>
+				<label for="">/</label>
+				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12" style="width: 110px;"/>
+				<label for="">/</label>
+				<input id="birthyear" name="birthmonth" size="4" type="number" value="1900" min="1" max="2018" style="width: 190px;"/>
+				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
+			</div>
+		</form>
+		<div id="lifePathResult"></div>
+		<div id="lifePathImages" class="row"></div>
+    </div>
+</div>
+</body>
+</html>
