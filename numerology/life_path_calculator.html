@@ -130,13 +130,17 @@
 			], 
 			// 10
 			[
-				["lp11", "", ""]
+				["lp1", "", ""]
 			], 
 			// 11
 			[
-				["lp22", "", ""]
+				["lp11", "", ""]
 			], 
 			// 12
+			[
+				["lp22", "", ""]
+			], 
+			// 13
 			[
 				["lp33", "", ""]
 			], 
@@ -152,15 +156,12 @@
 
 		var number = getLifePathNumber();
 
-		if (number == 11) {
-			message += lifePathMessages[10];
-			images = getImages(10);
-		} else if (number == 22) {
-			message += lifePathMessages[11];
-			images = getImages(11);
-		} else if (number == 33) {
+		if (number == 22) {
 			message += lifePathMessages[12];
 			images = getImages(12);
+		} else if (number == 33) {
+			message += lifePathMessages[13];
+			images = getImages(13);
 		} else {
 			message += lifePathMessages[number];	
 			console.log(number);
@@ -233,7 +234,7 @@
 				<input id="birthmonth" name="birthmonth" size="2" type="number" value="1" min="1" max="12" style="width: 110px;"/>
 				<label for="">/</label>
 				<input id="birthyear" name="birthmonth" size="4" type="number" value="1970" min="1" max="2018" style="width: 190px;"/>
-				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Submit</button>
+				<button type="submit" class="btn btn-primary" style="padding-left: 10px;">Enter</button>
 			</div>
 		</form>
 		<div id="lifePathResult"></div>
